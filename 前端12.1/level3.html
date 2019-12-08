@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="submit">发送一个请求</button>
+    <script>
+    let button = document.getElementById("submit")
+    button.addEventListener('click', () => {            
+    ajaxGet()
+    })
+
+    let url = { 
+        name:'文丽',
+        id:2517971980,
+    }
+    const POSTJSON = function(url) {
+        const promise = new Promise(function(resolve, reject){
+          const handler = function() {
+            if (xhr.readyState !== 4) {
+              return;
+            }
+            if (xhr.status === 200) {
+              resolve(xhr.response);
+            } else {
+              reject(new Error(xhr.statusText));
+            }
+          };
+          const client = new XMLHttpRequest();
+          xhr.open("POST", url);
+          xhr.onreadystatechange = handler;
+          xhr.responseType = "json";
+          xhr.setRequestHeader("Accept", "application/json");
+          xhr.send();
+        });
+        return promise;
+      };</script>
+</body>
+</html>

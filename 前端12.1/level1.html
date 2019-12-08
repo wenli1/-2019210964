@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="submit">发送一个请求</button>
+    <script>
+        let button = document.getElementById("submit")
+        button.addEventListener('click', () => {
+            ajaxGet()
+        })
+
+        let msg = { 
+        name:'文丽',
+        id:2517971980,
+    }
+
+        function ajaxGet() {
+            alert('请求已发送')
+
+            const xhr = new XMLHttpRequest()
+            xhr.open("POST", "http://39.107.142.107:3000/mock/25/testPost", true)
+            xhr.setRequestHeader('Content-Type','application/json')
+            xhr.send(JSON.stringify(msg))
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log(JSON.parse(xhr.responseText))
+                        console.log('请求成功')
+                    } else {
+                        console.log('请求失败')
+                    }
+                }
+            }
+
+        }
+        function ajacGet(){
+        const xhr = new XHRHttpRequest()
+        xhr.open("GET","http://39.107.142.107:3000/mock/25/gettest",true)
+        xhr.steRequestHeader('Contrnt-Type','application/json')
+        xhr.send(JASON.stringify(msg))
+        xhr.onreadystatechang = function(){
+            if (xhr.readyState ===4){
+                if(xhr.status === 200){
+                    console.log(JSON.parse(xhr.responseText))
+                    console.log('请求成功')    
+                } else {
+                    console.log('请求失败')
+                }
+            }
+        }
+        }
+    </script>
+</body>
+
+</html>
